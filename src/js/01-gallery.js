@@ -1,7 +1,7 @@
 // Add imports above this line
 import { galleryItems } from './gallery-items';
-import SimpleLightbox from "simplelightbox";
 
+import SimpleLightbox from "simplelightbox";
 
 // Change code below this line
 
