@@ -18,15 +18,10 @@ console.log(galleryDivEl);
 
 const creatGalerry = ({ preview, original, description }) =>
    
-    `<div class="gallery__item">
-           <a class="gallery__link" href="${original}">
-            <img
-      class="gallery__image"
-      src="${preview}"
-      data-source="${original}"
-      alt="${description}"
-    />
-  </a>
+`<div class="gallery__item">
+    <a class="gallery__item" href="${original}">
+        <img class="gallery__image" src="${preview}" alt="${description}" />
+    </a>
 </div>`;
       
 // переберем массив объектов и на каждый из них вызовем функцию для создания карточки
@@ -38,41 +33,11 @@ console.log(newArrayGalerry);
 
 galleryDivEl.insertAdjacentHTML('afterbegin', newArrayGalerry);
 
-// укажем функцию обработчика события при клике на картинку
-const handleImgClick = (event) => {
-  event.preventDefault();
+// let gallery = new SimpleLightbox('.gallery a', {
+//     captionsData: "alt",
+//     captionDelay: 250,
+    
+// })
 
-  // если это не картинка то return
-      if (event.target.nodeName !== "IMG") {
-        console.log("This is not img");
-        return;
-    }
-    // если это картинка - достаем ее значение(адрес) в data-source
-  const largeImg = event.target.dataset.source;
-  console.log(largeImg);
-  
-  // подключаем библиотеку по созданию модального окна и заносим адрес картинки
-  const modalImg = basicLightbox.create(`
-    <img src = '${largeImg}', width="800" height="600">
-`)
-
-modalImg.show()
-  
-  // закрытие модального окна Escape
-
- document.addEventListener('keydown', ({code}) => {
-  console.log(code);
-
-  if (code === 'Escape') {
-    modalImg.close();
-    document.removeEventListener('keydown', ({ code }));
-  }
-
-})
-  
-}
-
-// повесим слушателя на div class="gallery"
-galleryDivEl.addEventListener('click', handleImgClick);
-
+// console.log(gallery);
 console.log(galleryItems);
