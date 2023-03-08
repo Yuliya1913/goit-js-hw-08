@@ -33,11 +33,11 @@ console.log(newArrayGalerry);
 
 galleryDivEl.insertAdjacentHTML('afterbegin', newArrayGalerry);
 
-// let gallery = new SimpleLightbox('.gallery a', {
-//     captionsData: "alt",
-//     captionDelay: 250,
+let gallery = new SimpleLightbox('.gallery a', {
+    captionsData: "alt",
+    captionDelay: 250,
     
-// })
+})
 
-// console.log(gallery);
+console.log(gallery);
 console.log(galleryItems);
