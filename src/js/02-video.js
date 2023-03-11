@@ -1,25 +1,31 @@
 import Player from '@vimeo/player';
-
 console.log(Player);
 
-
+// сохраняем ключ для методов setItem и getItem localStorage в постоянной переменной
 const TIME_KEY = "videoplayer-current-time"
 
-    const iframe = document.querySelector('iframe');
-const player = new Player(iframe); 
-    
-// const timeEl = localStorage.setItem(TIME_KEY, event.second);
-console.log(timeEl)
+// используем библиотеку Vimeo плеера.
 
-player.on('play', function (event) {
-    const timeEl = localStorage.setItem(TIME_KEY, event.seconds);
-        console.log(timeEl)
-        console.log('played the video!')
+const iframe = document.querySelector('iframe');
+const player = new Player(iframe); 
+
+    //  Будем слушать событие timeupdate - обновления времени
+    player.on('timeupdate', (event) => {
+    // console.log(event);
+
+    // сохнарим в localStorage время нажания на паузу
+    localStorage.setItem(TIME_KEY, event.seconds);
     });
+
+    // достанем значение времени остановки плэйера из localStorage с помощью метода getItem
+    const timePause = localStorage.getItem(TIME_KEY);
+    console.log(timePause);
+
+    // применим его в методе setCurrentTime(установка текущей позиции воспроизведения)
+    player.setCurrentTime(timePause);
 
     player.getVideoTitle().then(function(title) {
         console.log('title:', title)
     });
-
-
-// console.log(Player);
+    
+console.log(Player);
