@@ -1,6 +1,7 @@
 import Player from '@vimeo/player';
+import throttle from 'lodash.throttle';
 console.log(Player);
-
+console.log(throttle);
 // сохраняем ключ для методов setItem и getItem localStorage в постоянной переменной
 const TIME_KEY = "videoplayer-current-time"
 
@@ -10,12 +11,12 @@ const iframe = document.querySelector('iframe');
 const player = new Player(iframe); 
 
     //  Будем слушать событие timeupdate - обновления времени
-    player.on('timeupdate', (event) => {
+    player.on('timeupdate', throttle((event) => {
     // console.log(event);
 
     // сохраним в localStorage время нажания на паузу
     localStorage.setItem(TIME_KEY, event.seconds);
-    });
+    }, 1000));
 
     // достанем значение времени остановки плэйера из localStorage с помощью метода getItem
     const timePause = localStorage.getItem(TIME_KEY);

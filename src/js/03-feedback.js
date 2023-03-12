@@ -35,19 +35,22 @@ function onFormInput(event) {
 }
 
 function populateForm() {
-
+    
     // получаем значение из localStorage и т.к.это объект - применим parse 
     const formDataGet = JSON.parse(localStorage.getItem(FORM_KEY));
     console.log(formDataGet);
+   
 
-    // если в formDataGet есть данные, то внести их в инпут и текстерию
- if (formDataGet) {
-     inputEl.value = formDataGet.email || '';
-     textareaEl.value = formDataGet.message || '';
+    // если в formDataGet есть данные, то внести их в инпут и текстерию иначе пустая строка
+ if (formDataGet || "") {
+     inputEl.value = formDataGet.email;
+     textareaEl.value = formDataGet.message;
 
      console.log(inputEl.value);
      console.log(textareaEl.value);  
-    }
+ }
+    // обновляем объект
+     formData = { ...formData, email:inputEl.value, message: textareaEl.value};
 }
 
 // при отправке формы
