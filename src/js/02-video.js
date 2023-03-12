@@ -13,7 +13,7 @@ const player = new Player(iframe);
     player.on('timeupdate', (event) => {
     // console.log(event);
 
-    // сохнарим в localStorage время нажания на паузу
+    // сохраним в localStorage время нажания на паузу
     localStorage.setItem(TIME_KEY, event.seconds);
     });
 
@@ -21,9 +21,12 @@ const player = new Player(iframe);
     const timePause = localStorage.getItem(TIME_KEY);
     console.log(timePause);
 
-    // применим его в методе setCurrentTime(установка текущей позиции воспроизведения)
+    // если значение в ключе есть
+    if (timePause) {
+ // применим его в методе setCurrentTime(установка текущей позиции воспроизведения)
     player.setCurrentTime(timePause);
-
+}
+   
     player.getVideoTitle().then(function(title) {
         console.log('title:', title)
     });

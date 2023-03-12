@@ -2,7 +2,7 @@ import throttle from 'lodash.throttle';
 console.log(throttle);
 const FORM_KEY = "feedback-form-state";
 // Создаем объект
-const formData = {};
+let formData = {};
 
 // находим ссылки на form, input, extarea
 
@@ -35,14 +35,15 @@ function onFormInput(event) {
 }
 
 function populateForm() {
+
     // получаем значение из localStorage и т.к.это объект - применим parse 
     const formDataGet = JSON.parse(localStorage.getItem(FORM_KEY));
     console.log(formDataGet);
 
     // если в formDataGet есть данные, то внести их в инпут и текстерию
  if (formDataGet) {
-     inputEl.value = formDataGet.email;
-     textareaEl.value = formDataGet.message;
+     inputEl.value = formDataGet.email || '';
+     textareaEl.value = formDataGet.message || '';
 
      console.log(inputEl.value);
      console.log(textareaEl.value);  
